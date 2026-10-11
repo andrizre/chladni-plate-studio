@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chladni Plate Studio — Cymatics Simulator</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Chladni Plate Studio</h1>
+  <p class="subtitle">Simulate standing-wave sand patterns on a vibrating plate — cymatics in your browser</p>
+</header>
+
+<main>
+  <aside id="controls">
+    <section>
+      <h2>Vibration Mode</h2>
+      <div class="mode-grid" id="modeGrid"></div>
+    </section>
+
+    <section>
+      <h2>Physics</h2>
+      <label>Frequency (mode m) <span id="mVal">3</span>
+        <input type="range" id="m" min="1" max="10" value="3" />
+      </label>
+      <label>Harmonic (mode n) <span id="nVal">2</span>
+        <input type="range" id="n" min="0" max="10" value="2" />
+      </label>
+      <label>Mix <span id="mixVal">0.5</span>
+        <input type="range" id="mix" min="0" max="1" step="0.01" value="0.5" />
+      </label>
+      <label>Plate shape
+        <select id="shape">
+          <option value="square">Square plate</option>
+          <option value="circle">Circular plate</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <h2>Sand</h2>
+      <label>Grain count <span id="grainVal">14000</span>
+        <input type="range" id="grains" min="2000" max="40000" step="1000" value="14000" />
+      </label>
+      <button id="shake">Shake plate (re-scatter)</button>
+      <button id="export">Export PNG</button>
+    </section>
+
+    <section>
+      <h2>Sound (Web Audio)</h2>
+      <button id="toneToggle">Play tone</button>
+      <p class="hint">Plays a tone whose pitch maps to the current mode — headphones recommended.</p>
+    </section>
+
+    <section>
+      <h2>Presets</h2>
+      <div id="presets"></div>
+    </section>
+  </aside>
+
+  <div id="stage">
+    <canvas id="plate" width="720" height="720"></canvas>
+    <p class="hint" id="fpsLabel">drag on the plate to sweep the mode mix</p>
+  </div>
+</main>
+
+<script src="chladni.js"></script>
+</body>
+</html>
