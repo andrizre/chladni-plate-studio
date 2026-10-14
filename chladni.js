@@ -23,6 +23,7 @@
     presets: document.getElementById('presets'),
     shake: document.getElementById('shake'),
     exportBtn: document.getElementById('export'),
+    pause: document.getElementById('pause'),
     toneToggle: document.getElementById('toneToggle'),
     fps: document.getElementById('fpsLabel'),
   };
@@ -150,6 +151,12 @@
   }
 
   let running = true;
+  function setRunning(v) {
+    running = v;
+    ui.pause.textContent = running ? 'Pause simulation' : 'Resume simulation';
+    ui.pause.classList.toggle('paused', !running);
+  }
+  ui.pause.addEventListener('click', () => setRunning(!running));
   function loop() {
     if (running) {
       step(1);
@@ -281,6 +288,7 @@
 
   window.addEventListener('keydown', (e) => {
     if (e.key === ' ') { e.preventDefault(); scatter(); }
+    if (e.key === 'p' || e.key === 'P') { e.preventDefault(); setRunning(!running); }
   });
 
   // ---------- boot ----------
